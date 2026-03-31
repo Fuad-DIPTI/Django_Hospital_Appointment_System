@@ -1,21 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Login</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card shadow-sm border-0 mt-5">
+        <div class="card-body p-4">
+          <!-- Title -->
+          <h3 class="text-center text-primary mb-4">🔐 Login to E-CARE</h3>
 
-  <form method="POST">
-    {% csrf_token %}
+          <!-- Form -->
+          <form method="POST">
+            {% csrf_token %}
 
-    <label>Username:</label>
-    <input type="text" name="username" /><br /><br />
+            <!-- Username -->
+            <div class="mb-3">
+              <label class="form-label">Username</label>
+              <input type="text" name="username" class="form-control" placeholder="Enter username" required />
+            </div>
 
-    <label>Password:</label>
-    <input type="password" name="password" /><br /><br />
+            <!-- Password -->
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Enter password" required />
+            </div>
 
-    <button type="submit">Login</button>
-  </form>
+            <!-- Button -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+          </form>
 
-  <p>
-    Don't have an account? <a href="{% url 'register' %}">Register</a>
-  </p>
+          <!-- Register Link -->
+          <p class="text-center mt-3 mb-0">
+            Don't have an account?
+            <a href="{% url 'register' %}" class="text-decoration-none">Register</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

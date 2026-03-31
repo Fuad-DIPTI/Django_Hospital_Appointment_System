@@ -1,23 +1,76 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Register</h2>
 
-<form method="POST">
-    {% csrf_token %}
-    
-    <label>Username:</label>
-    {{ form.username }} <br><br>
+<div class="row justify-content-center">
+    <div class="col-md-6">
 
-    <label>Password:</label>
-    {{ form.password }} <br><br>
+        <div class="card shadow-sm border-0 mt-5">
+            <div class="card-body p-4">
 
-    <label>Role:</label>
-    {{ form.role }} <br><br>
+                <!-- Title -->
+                <h3 class="text-center text-primary mb-4">
+                    📝 Create an E-CARE Account
+                </h3>
 
-    <button type="submit">Register</button>
-</form>
+                <!-- Messages (Errors/Success) -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
 
-<p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+                <!-- Form -->
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <!-- Username -->
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        {{ form.username }}
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        {{ form.email }}
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        {{ form.password }}
+                    </div>
+
+                    <!-- Role -->
+                    <div class="mb-3">
+                        <label class="form-label">Select Role</label>
+                        {{ form.role }}
+                    </div>
+
+                    <!-- Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">
+                            Register
+                        </button>
+                    </div>
+
+                </form>
+
+                <!-- Login Link -->
+                <p class="text-center mt-3 mb-0">
+                    Already have an account?
+                    <a href="{% url 'login' %}" class="text-decoration-none">
+                        Login
+                    </a>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+</div>
 
 {% endblock %}

@@ -1,7 +1,13 @@
 from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.contrib.auth import authenticate, login, logout
+from .decorators import role_required
+from django.contrib.auth.decorators import login_required
 
+def home_view(request):
+    return render(request, 'home.html')
+
+@role_required(['staff'])
 def register_view(request):
     form = UserRegisterForm(request.POST or None)
 
@@ -37,9 +43,12 @@ def login_view(request):
     return render(request, 'login.html')
 
 
+@login_required()
 def dashboard(request):
     return render(request, 'dashboard.html')
 
+
+@login_required()
 def logout_view(request):
     logout(request)
-    return redirect('register')
+    return redirect('login')

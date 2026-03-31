@@ -4,6 +4,8 @@ from django.db import models
 class User(AbstractUser):
     full_name = models.CharField(max_length=100)
 
+    email = models.EmailField(max_length=100, unique=True)
+
     ROLE_CHOICES = (
         ('doctor', 'Doctor'),
         ('staff', 'Staff'),
@@ -14,6 +16,14 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+
+
+
+
+
+
 
 
 class DoctorProfile(models.Model):
